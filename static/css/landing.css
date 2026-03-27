@@ -1,0 +1,191 @@
+/* ------------------------------------------------------------------ */
+/* Landing page — hero overrides                                       */
+/* ------------------------------------------------------------------ */
+
+.lp-hero {
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+}
+
+.lp-hero-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Badge */
+.lp-badge {
+    display: inline-block;
+    background: #eafaf3;
+    color: #1a6e45;
+    border: 1px solid #b6e8ce;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    margin-bottom: 1.75rem;
+}
+
+/* Title */
+.lp-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 5.5vw, 3.75rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+}
+
+.lp-title-teal {
+    color: #0d9e8c;
+}
+
+/* Subtitle */
+.lp-subtitle {
+    font-size: 1rem;
+    color: var(--ink-muted);
+    line-height: 1.7;
+    max-width: 480px;
+    margin-bottom: 2rem;
+}
+
+/* CTA buttons */
+.lp-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Dashboard mockup                                                    */
+/* ------------------------------------------------------------------ */
+
+.lp-dash-wrap {
+    width: 100%;
+    max-width: 620px;
+}
+
+.lp-dash {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.07);
+    overflow: hidden;
+}
+
+/* Browser chrome */
+.lp-dash-chrome {
+    background: #f5f4f1;
+    border-bottom: 1px solid var(--border);
+    padding: 0.65rem 1rem;
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+}
+
+.lp-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.lp-dot-red    { background: #ff5f57; }
+.lp-dot-yellow { background: #febc2e; }
+.lp-dot-green  { background: #28c840; }
+
+/* Stat cards row */
+.lp-dash-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.lp-stat {
+    padding: 1.25rem 1.5rem;
+    border-right: 1px solid var(--border-soft);
+    text-align: left;
+}
+
+.lp-stat:last-child { border-right: none; }
+
+.lp-stat-label {
+    font-size: 0.75rem;
+    color: var(--ink-muted);
+    font-weight: 500;
+    margin-bottom: 0.35rem;
+}
+
+.lp-stat-value {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--ink);
+    margin-bottom: 0.2rem;
+}
+
+.lp-stat-sub {
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+}
+
+.lp-positive { color: #1a6e45; }
+
+/* Bar chart rows */
+.lp-dash-bars {
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.lp-bar-row {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.lp-bar-cat {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    text-align: left;
+}
+
+.lp-bar-track {
+    height: 8px;
+    background: var(--border-soft);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.lp-bar {
+    height: 100%;
+    border-radius: 999px;
+}
+
+.lp-bar-1 { background: #0d9e8c; }
+.lp-bar-2 { background: #c17f24; }
+.lp-bar-3 { background: #1a472a; }
+
+/* ------------------------------------------------------------------ */
+/* Responsive                                                          */
+/* ------------------------------------------------------------------ */
+
+@media (max-width: 600px) {
+    .lp-dash-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .lp-stat {
+        border-right: none;
+        border-bottom: 1px solid var(--border-soft);
+    }
+
+    .lp-stat:last-child { border-bottom: none; }
+}
