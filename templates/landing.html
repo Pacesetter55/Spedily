@@ -21,7 +21,7 @@
         </p>
         <div class="lp-actions">
             <a href="{{ url_for('register') }}" class="btn-primary">Create free account</a>
-            <a href="#" class="btn-ghost">See how it works +</a>
+            <button id="open-video-modal" class="btn-ghost">See how it works +</button>
         </div>
         <div class="lp-dash-wrap">
             <div class="lp-dash">
@@ -94,4 +94,56 @@
     </div>
 </section>
 
+<!-- Video modal -->
+<div id="video-modal" class="lp-modal" aria-hidden="true">
+    <div class="lp-modal-backdrop"></div>
+    <div class="lp-modal-box">
+        <button class="lp-modal-close" aria-label="Close video">&times;</button>
+        <div class="lp-modal-video">
+            <iframe
+                id="video-modal-iframe"
+                src=""
+                data-src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                frameborder="0"
+                allow="autoplay; encrypted-media; fullscreen"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+(function () {
+    var modal    = document.getElementById('video-modal');
+    var iframe   = document.getElementById('video-modal-iframe');
+    var openBtn  = document.getElementById('open-video-modal');
+    var closeBtn = modal.querySelector('.lp-modal-close');
+    var backdrop = modal.querySelector('.lp-modal-backdrop');
+
+    function openModal() {
+        iframe.src = iframe.dataset.src;
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        iframe.src = '';
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    backdrop.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') {
+            closeModal();
+        }
+    });
+}());
+</script>
 {% endblock %}
