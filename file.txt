@@ -1,0 +1,52 @@
+╭─── Claude Code v2.1.81 ──────────────────────────────────────────────────────╮
+│                                                    │ Tips for getting        │
+│               Welcome back Priyanshu!              │ started                 │
+│                                                    │ Run /init to create a … │
+│                       ▐▛███▜▌                      │ ─────────────────────── │
+│                      ▝▜█████▛▘                     │ Recent activity         │
+│                        ▘▘ ▝▝                       │ No recent activity      │
+│   Sonnet 4.6 · Claude Pro ·                        │                         │
+│   priyanshupokhariya257@gmail.com's Organization   │                         │
+│     ~\Desktop\expense-tracker\expense-tracker      │                         │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  ✻ Voice mode is now available · /voice to enable
+
+❯ Hii                                                                           
+
+● Hi! How can I help you today?
+
+❯ Can you tell me what this project is all about                                
+
+  Searched for 1 pattern, read 4 files (ctrl+o to expand)
+
+● This is Spendly — a personal expense tracker web app built as a student 
+  learning project. Here's what it's about:
+
+  Tech Stack
+  - Backend: Python + Flask
+  - Database: SQLite (not yet implemented)
+  - Frontend: HTML/CSS/JS with Jinja2 templates
+
+  What the app does
+  It's a personal finance tracker where users can:
+  - Register / login / logout
+  - Log expenses (amount, category, date, description)
+  - View spending breakdowns by category (Bills, Food, Health, Transport, etc.)
+  - Filter expenses by time period
+
+  Current State
+  The project is a scaffolded starter template for students to build
+  step-by-step:
+  - The UI (landing page, login, register) is already built
+  - The database layer (database/db.py) is empty — students implement it in Step
+   1
+  - Most routes (/logout, /profile, /expenses/add, etc.) are placeholder stubs
+  labeled with steps (Step 3 through 9)
+  - The app runs on port 5001
+
+  It's essentially a guided exercise where students progressively implement
+  authentication, database operations, and CRUD functionality for expenses.
+
+❯ /export                                                                       
+  ⎿  Export cancelled
