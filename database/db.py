@@ -39,6 +39,37 @@ def init_db():
     conn.close()
 
 
+def get_user_by_email(email):
+    """Return the user row matching email, or None."""
+    conn = get_db()
+    row = conn.execute(
+        "SELECT * FROM users WHERE email = ?", (email,)
+    ).fetchone()
+    conn.close()
+    return row
+
+
+def get_user_by_username(username):
+    """Return the user row matching username, or None."""
+    conn = get_db()
+    row = conn.execute(
+        "SELECT * FROM users WHERE username = ?", (username,)
+    ).fetchone()
+    conn.close()
+    return row
+
+
+def create_user(username, email, password_hash):
+    """Insert a new user row and commit."""
+    conn = get_db()
+    conn.execute(
+        "INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)",
+        (username, email, password_hash),
+    )
+    conn.commit()
+    conn.close()
+
+
 def seed_db():
     """Insert sample data for development (idempotent — skips if data exists)."""
     conn = get_db()
