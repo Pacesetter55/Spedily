@@ -105,8 +105,34 @@ def logout():
 
 
 @app.route("/profile")
+@login_required
 def profile():
-    return "Profile page — coming in Step 4"
+    user = {
+        "username": "Nitish Kumar",
+        "email":    "nitish@example.com",
+        "member_since": "January 2025",
+    }
+    stats = {
+        "total_spent":      "₹18,240",
+        "num_transactions": 34,
+        "top_category":     "Food",
+    }
+    transactions = [
+        {"date": "Apr 18, 2026", "title": "Grocery run",       "category": "food",          "amount": "₹2,450"},
+        {"date": "Apr 15, 2026", "title": "Electric bill",     "category": "utilities",     "amount": "₹1,200"},
+        {"date": "Apr 12, 2026", "title": "Netflix",           "category": "entertainment", "amount": "₹649"},
+        {"date": "Apr 10, 2026", "title": "Metro card topup",  "category": "transport",     "amount": "₹500"},
+        {"date": "Apr 07, 2026", "title": "Doctor visit",      "category": "health",        "amount": "₹800"},
+    ]
+    categories = [
+        {"name": "Food",          "slug": "food",          "amount": "₹6,400", "pct": 35},
+        {"name": "Utilities",     "slug": "utilities",     "amount": "₹3,800", "pct": 21},
+        {"name": "Transport",     "slug": "transport",     "amount": "₹2,900", "pct": 16},
+        {"name": "Entertainment", "slug": "entertainment", "amount": "₹2,100", "pct": 12},
+        {"name": "Health",        "slug": "health",        "amount": "₹3,040", "pct": 16},
+    ]
+    return render_template("profile.html", user=user, stats=stats,
+                           transactions=transactions, categories=categories)
 
 
 @app.route("/expenses/add")
