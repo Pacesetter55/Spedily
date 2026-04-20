@@ -1,11 +1,25 @@
 import os
-from flask import Flask, render_template, request, redirect, url_for
-from werkzeug.security import generate_password_hash
+import functools
+from flask import Flask, render_template, request, redirect, url_for, session
+from werkzeug.security import generate_password_hash, check_password_hash
 from database.db import init_db, get_user_by_email, get_user_by_username, create_user
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'dev-secret-change-me')
 init_db()
+
+
+# ------------------------------------------------------------------ #
+# Auth helpers                                                        #
+# ------------------------------------------------------------------ #
+
+def login_required(f):
+    @functools.wraps(f)
+    def decorated(*args, **kwargs):
+        if not session.get('user_id'):
+            return redirect(url_for('login', next=request.path))
+        return f(*args, **kwargs)
+    return decorated
 
 
 # ------------------------------------------------------------------ #
@@ -43,9 +57,30 @@ def register():
     return redirect(url_for("login"))
 
 
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
-    return render_template("login.html")
+    if session.get('user_id'):
+        return redirect(url_for('profile'))
+
+    if request.method == "GET":
+        return render_template("login.html")
+
+    email    = request.form.get("email",    "").strip()
+    password = request.form.get("password", "")
+
+    if not email or not password:
+        return render_template("login.html", error="All fields are required.")
+
+    user = get_user_by_email(email)
+    if not user or not check_password_hash(user['password_hash'], password):
+        return render_template("login.html", error="Invalid email or password.")
+
+    session.clear()
+    session['user_id']  = user['id']
+    session['username'] = user['username']
+
+    next_url = request.args.get('next')
+    return redirect(next_url if next_url else url_for('profile'))
 
 
 # ------------------------------------------------------------------ #
@@ -63,8 +98,10 @@ def privacy():
 
 
 @app.route("/logout")
+@login_required
 def logout():
-    return "Logout — coming in Step 3"
+    session.clear()
+    return redirect(url_for('landing'))
 
 
 @app.route("/profile")
